@@ -5,7 +5,7 @@ public class Table {
 	private int id;
     private int max;
 
-    Map<Date, Reservation> reservations;
+    Map<Calendar, Reservation> reservations;
 
     public Table(int id, int max) {
         this.id = id;
@@ -33,11 +33,10 @@ public class Table {
 		return id;
 	}
     
-    private Date getDateTime(Date arrDate, int hour) {
+    private Calendar getDateTime(Date arrDate, int hour) {
         Calendar cal = new GregorianCalendar();
         cal.setTime(arrDate);
         cal.set(Calendar.HOUR_OF_DAY, hour);
-        Date dateTime = cal.getTime();    
-        return dateTime;
+        return cal;
     }
 }
