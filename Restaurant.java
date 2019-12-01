@@ -13,22 +13,17 @@ public class Restaurant {
         Date arrDate = toDate(dateString);
 
         // get first available table
-        Optional<Table> firstAvail = tables.stream()
-            .filter(t -> t.getMax() >= numOfGuests)
-            .filter(t -> t.isFree(arrDate, hour))
-            .findFirst();
-
-        if (firstAvail.isPresent()) {
-            Table table = firstAvail.get();
-            table.reserve(arrDate, hour, numOfGuests, name, tel);
-            return table.getId();
-        } else {
-            return -1;
+        for(Table table: tables) {
+            if (table.getMax() >= numOfGuests && table.isFree(arrDate, hour)) {
+                table.reserve(arrDate, hour, numOfGuests, name, tel);
+                return table.getId();
+            }
         }
+        return -1;
     }
 
     public Restaurant() {
-        tables = new ArrayList<Table>();
+        tables = new ArrayList<>();
 
         Table t1 = new Table(1, 2);
         Table t2 = new Table(2, 4);
@@ -38,17 +33,6 @@ public class Restaurant {
         tables.add(t2);
         tables.add(t3);
         tables.add(t4);
-        
-        // SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        // DailyReservations d23 = new DailyReservations();
-        // d23.getReservations().add(new Reservation(13, 2, "Dranidis", t4));
-        // d23.getReservations().add(new Reservation(13, 3, "Hatzi", t2));
-
-        // try {
-        //     reservations.put(sdf.parse("23/11/2019"), d23);
-        // } catch (ParseException e) {
-        //     e.printStackTrace();
-        // }
     }
 
     private Date toDate(String dateString) throws ParseException {

@@ -16,11 +16,7 @@ public class Table {
     public boolean isFree(Date arrDate, int hour) {
         // Get the reservations for the date
         Map<Integer, Reservation> dailyReservations = reservations.get(arrDate);
-        if (dailyReservations == null) {
-            return true;
-        }
-
-        if (dailyReservations.get(new Integer(hour)) == null) {
+        if (dailyReservations == null || dailyReservations.get(new Integer(hour)) == null) {
             return true;
         } else {
             return false;
