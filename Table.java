@@ -5,33 +5,20 @@ public class Table {
 	private int id;
     private int max;
 
-    Map<Date, Map<Integer, Reservation>> reservations;
+    Map<Date, Reservation> reservations;
 
     public Table(int id, int max) {
         this.id = id;
         this.max = max;
-        this.reservations = new HashMap<Date, Map<Integer, Reservation>>();
+        this.reservations = new HashMap<>();
     }
 
     public boolean isFree(Date arrDate, int hour) {
-        // Get the reservations for the date
-        Map<Integer, Reservation> dailyReservations = reservations.get(arrDate);
-        if (dailyReservations == null || dailyReservations.get(new Integer(hour)) == null) {
-            return true;
-        } else {
-            return false;
-        }
+        return !reservations.containsKey(getDateTime(arrDate, hour));
     }
 
     public void reserve(Date arrDate, int hour, int numOfGuests, String custName, String tel) {
-        // Get the reservations for the date
-        Map<Integer, Reservation> dailyReservations = reservations.get(arrDate);
-        if (dailyReservations == null) {
-            dailyReservations = new HashMap<Integer, Reservation>(); 
-            reservations.put(arrDate, dailyReservations);
-        }
-        dailyReservations.put(new Integer(hour), new Reservation(hour, numOfGuests, custName));
-
+        reservations.put(getDateTime(arrDate, hour), new Reservation(numOfGuests, custName));
     }
     
     public String toString() {
@@ -46,4 +33,11 @@ public class Table {
 		return id;
 	}
     
+    private Date getDateTime(Date arrDate, int hour) {
+        Calendar cal = new GregorianCalendar();
+        cal.setTime(arrDate);
+        cal.set(Calendar.HOUR_OF_DAY, hour);
+        Date dateTime = cal.getTime();    
+        return dateTime;
+    }
 }
