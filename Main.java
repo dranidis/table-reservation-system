@@ -3,26 +3,25 @@ import java.text.ParseException;
 public class Main {
     public static void main(String a[]) {
         Restaurant r = new Restaurant();
-        try {
+        execReserveTableScenario(r, "23/11/2019", 13, 4, "Dranidis", "699555555");
+        execReserveTableScenario(r, "23/11/2019", 13, 4, "Dranidis", "699555555");
+        execReserveTableScenario(r, "23/11/2019", 13, 4, "Dranidis", "699555555");
+        execReserveTableScenario(r, "23/11/2019", 13, 4, "Dranidis", "699555555");
+        execReserveTableScenario(r, "23/11/2019", 13, 2, "Dranidis", "699555555");
+        execReserveTableScenario(r, "23/11/2019", 13, 2, "Dranidis", "699555555");
+        execReserveTableScenario(r, "24/11/2019", 13, 8, "Dranidis", "699555555");
+        execReserveTableScenario(r, "25/11/2019", 13, 10, "Dranidis", "699555555");
+    }    
 
-            int tId = r.reserveTable("23/11/2019", 13, 4, "Dranidis", "699555555");
-            System.out.println("Reserved: " + tId);
-            tId = r.reserveTable("23/11/2019", 13, 4, "Dranidis", "699555555");
-            System.out.println("Reserved: " + tId);
-            tId = r.reserveTable("23/11/2019", 13, 4, "Dranidis", "699555555");
-            System.out.println("Reserved: " + tId);
-            tId = r.reserveTable("23/11/2019", 13, 4, "Dranidis", "699555555");
-            System.out.println("Reserved: " + tId);
-            tId = r.reserveTable("23/11/2019", 13, 2, "Dranidis", "699555555");
-            System.out.println("Reserved: " + tId);
-            tId = r.reserveTable("23/11/2019", 13, 2, "Dranidis", "699555555");
-            System.out.println("Reserved: " + tId);
-            tId = r.reserveTable("24/11/2019", 13, 8, "Dranidis", "699555555");
-            System.out.println("Reserved: " + tId);
-            tId = r.reserveTable("25/11/2019", 13, 10, "Dranidis", "699555555");
-            System.out.println("Reserved: " + tId);
+    public static void execReserveTableScenario(Restaurant r, String dateString, int hour, int numOfGuests, String name, String tel) {
+        try {
+            int tId = r.reserveTable(dateString, hour, numOfGuests, name, tel);
+            if (tId != -1) 
+                System.out.println("Reserved: " + tId);
+            else
+                System.out.println("Failed");
         } catch (ParseException e) {
             e.printStackTrace();
         }
-    }    
+    }
 }
