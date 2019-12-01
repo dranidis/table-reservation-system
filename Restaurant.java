@@ -5,9 +5,9 @@ import java.util.*;
 public class Restaurant {
     private List<Table> tables;
 
-    public int reserveTable(String dateString, int hour, int numOfGuests, String name, String tel)
+    public int reserveTable(String dateString, int numOfGuests, String name, String tel)
             throws ParseException {
-        Calendar arrDateTime = toCalendarTime(dateString, hour);
+        Calendar arrDateTime = toCalendarTime(dateString);
 
         // get first available table
         for(Table table: tables) {
@@ -32,11 +32,11 @@ public class Restaurant {
         tables.add(t4);
     }
 
-    private Calendar toCalendarTime(String dateString, int hour) throws ParseException {
+    private Calendar toCalendarTime(String dateString) throws ParseException {
         Calendar cal = new GregorianCalendar();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH");
         cal.setTime(sdf.parse(dateString));
-        cal.set(Calendar.HOUR_OF_DAY, hour);
+        // cal.set(Calendar.HOUR_OF_DAY, hour);
         return cal;
     }    
 }
