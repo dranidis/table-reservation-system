@@ -1,3 +1,4 @@
+package trs;
 
 import java.util.*;
 public class Table {
@@ -20,7 +21,7 @@ public class Table {
     public void reserve(Calendar arrDateHour, int numOfGuests, String custName, String tel) {
         reservations.put(arrDateHour, new Reservation(numOfGuests, custName));
     }
-    
+
     public String toString() {
         return String.format("Table: %d - MAX: %d", id, max);
     }

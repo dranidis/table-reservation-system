@@ -2,16 +2,10 @@
     "configurations": [
         {
             "type": "java",
-            "name": "CodeLens (Launch) - Main",
+            "name": "CodeLens (Launch) - App",
             "request": "launch",
-            "mainClass": "Main"
-        },
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - Main",
-            "request": "launch",
-            "mainClass": "Main",
-            "projectName": "table-reservation_9789379b"
+            "mainClass": "trs.App",
+            "projectName": "trs-project"
         }
     ]
 }
