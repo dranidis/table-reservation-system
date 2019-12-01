@@ -1,20 +1,18 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class Restaurant {
     private List<Table> tables;
 
     public int reserveTable(String dateString, int hour, int numOfGuests, String name, String tel)
             throws ParseException {
-        Date arrDate = toDate(dateString);
+        Calendar arrDateTime = toCalendarTime(dateString, hour);
 
         // get first available table
         for(Table table: tables) {
-            if (table.getMax() >= numOfGuests && table.isFree(arrDate, hour)) {
-                table.reserve(arrDate, hour, numOfGuests, name, tel);
+            if (table.getMax() >= numOfGuests && table.isFree(arrDateTime)) {
+                table.reserve(arrDateTime, numOfGuests, name, tel);
                 return table.getId();
             }
         }
@@ -34,10 +32,11 @@ public class Restaurant {
         tables.add(t4);
     }
 
-    private Date toDate(String dateString) throws ParseException {
+    private Calendar toCalendarTime(String dateString, int hour) throws ParseException {
+        Calendar cal = new GregorianCalendar();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        Date arrDate;
-        arrDate = sdf.parse(dateString);
-        return arrDate;
-    }
+        cal.setTime(sdf.parse(dateString));
+        cal.set(Calendar.HOUR_OF_DAY, hour);
+        return cal;
+    }    
 }

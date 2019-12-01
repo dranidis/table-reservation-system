@@ -13,12 +13,12 @@ public class Table {
         this.reservations = new HashMap<>();
     }
 
-    public boolean isFree(Date arrDate, int hour) {
-        return !reservations.containsKey(getDateTime(arrDate, hour));
+    public boolean isFree(Calendar arrDateHour) {
+        return !reservations.containsKey(arrDateHour);
     }
 
-    public void reserve(Date arrDate, int hour, int numOfGuests, String custName, String tel) {
-        reservations.put(getDateTime(arrDate, hour), new Reservation(numOfGuests, custName));
+    public void reserve(Calendar arrDateHour, int numOfGuests, String custName, String tel) {
+        reservations.put(arrDateHour, new Reservation(numOfGuests, custName));
     }
     
     public String toString() {
@@ -32,11 +32,4 @@ public class Table {
 	public int getId() {
 		return id;
 	}
-    
-    private Calendar getDateTime(Date arrDate, int hour) {
-        Calendar cal = new GregorianCalendar();
-        cal.setTime(arrDate);
-        cal.set(Calendar.HOUR_OF_DAY, hour);
-        return cal;
-    }
 }
