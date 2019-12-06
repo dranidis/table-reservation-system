@@ -43,9 +43,9 @@ public class Restaurant {
     }
 
     void printTables() {
-        tables.forEach(t -> {
+        for(Table t: tables) {
             System.out.println(t);
             t.printReservations();
-        });
+        };
     }
 }

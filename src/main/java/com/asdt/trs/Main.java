@@ -14,7 +14,7 @@ public class Main {
         execReserveTableScenario(r, "24/11/2019 13", 8, "Henry", "699555445");
         execReserveTableScenario(r, "25/11/2019 13", 10, "Tim", "699335555");
 
-        // r.printTables();
+        r.printTables();
     }
 
     public static void execReserveTableScenario(Restaurant r, String dateString, int numOfGuests, String name, String tel) {
