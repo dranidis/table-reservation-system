@@ -1,4 +1,4 @@
-package trs;
+package com.asdt.trs;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -40,5 +40,12 @@ public class Restaurant {
         cal.setTime(sdf.parse(dateString));
         // cal.set(Calendar.HOUR_OF_DAY, hour);
         return cal;
+    }
+
+    void printTables() {
+        tables.forEach(t -> {
+            System.out.println(t);
+            t.printReservations();
+        });
     }
 }

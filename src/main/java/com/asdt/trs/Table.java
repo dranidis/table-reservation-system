@@ -1,4 +1,4 @@
-package trs;
+package com.asdt.trs;
 
 import java.util.*;
 public class Table {
@@ -33,4 +33,8 @@ public class Table {
 	public int getId() {
 		return id;
 	}
+    void printReservations() {
+        reservations.forEach((k,v)->
+            System.out.println("Date : " + k.get(Calendar.DAY_OF_MONTH) + "/" + k.get(Calendar.MONTH) + " Res : " + v));
+    }
 }

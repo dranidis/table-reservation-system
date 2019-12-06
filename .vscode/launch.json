@@ -4,8 +4,8 @@
             "type": "java",
             "name": "CodeLens (Launch) - App",
             "request": "launch",
-            "mainClass": "trs.App",
-            "projectName": "trs-project"
+            "mainClass": "trs.Main",
+            "projectName": "trs"
         }
     ]
 }

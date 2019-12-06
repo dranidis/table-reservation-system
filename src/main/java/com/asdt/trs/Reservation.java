@@ -1,4 +1,4 @@
-package trs;
+package com.asdt.trs;
 
 public class Reservation {
     private String custName;
