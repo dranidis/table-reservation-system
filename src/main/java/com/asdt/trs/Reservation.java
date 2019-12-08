@@ -10,6 +10,6 @@ public class Reservation {
     }
 
     public String toString() {
-        return String.format("coming: %d persons at name: %s", numOfGuests, custName);
+        return String.format("%d persons at name: %s", numOfGuests, custName);
     }
 }

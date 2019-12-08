@@ -1,18 +1,28 @@
 package com.asdt.trs;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Restaurant {
-    private List<Table> tables;
+    private List<Table> tables = new ArrayList<>();;
 
-    public int reserveTable(String dateString, int numOfGuests, String name, String tel)
-            throws ParseException {
-        Calendar arrDateTime = toCalendarTime(dateString);
+    /**
+     * Returns the first available table id for the specific date and time.
+     *
+     * @param dateString
+     * @param numOfGuests
+     * @param name
+     * @param tel
+     * @return
+     * @throws ParseException
+     */
+    public int reserveTable(String dateString, int numOfGuests, String name, String tel) {
+        LocalDateTime arrDateTime = toDateTime(dateString);
 
         // get first available table
-        for(Table table: tables) {
+        for (Table table : tables) {
             if (table.getMax() >= numOfGuests && table.isFree(arrDateTime)) {
                 table.reserve(arrDateTime, numOfGuests, name, tel);
                 return table.getId();
@@ -21,31 +31,21 @@ public class Restaurant {
         return -1;
     }
 
-    public Restaurant() {
-        tables = new ArrayList<>();
-
-        Table t1 = new Table(1, 2);
-        Table t2 = new Table(2, 4);
-        Table t3 = new Table(3, 6);
-        Table t4 = new Table(4, 8);
-        tables.add(t1);
-        tables.add(t2);
-        tables.add(t3);
-        tables.add(t4);
+    public void addTable(int id, int max) {
+        tables.add(new Table(id, max));
     }
 
-    private Calendar toCalendarTime(String dateString) throws ParseException {
-        Calendar cal = new GregorianCalendar();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH");
-        cal.setTime(sdf.parse(dateString));
-        // cal.set(Calendar.HOUR_OF_DAY, hour);
-        return cal;
+    private LocalDateTime toDateTime(String dateString) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH");
+        return LocalDateTime.parse(dateString, formatter);
     }
 
-    void printTables() {
-        for(Table t: tables) {
-            System.out.println(t);
-            t.printReservations();
-        };
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\nRESTAURANT TABLE RESERVATIONS\n");
+        for (Table t : tables) {
+            sb.append(t);
+        }
+        return sb.toString();
     }
 }
