@@ -16,6 +16,6 @@ public class TableTest {
 
         assertTrue(t.isFree(dateTime));
         t.reserve(dateTime, 2, "Alice", "555");
-        assertTrue(t.isFree(dateTime));
+        assertFalse(t.isFree(dateTime));
     }
 }
