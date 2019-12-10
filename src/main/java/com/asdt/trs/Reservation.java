@@ -1,10 +1,10 @@
 package com.asdt.trs;
 
-public class Reservation {
+class Reservation {
     private String custName;
     private int numOfGuests;
 
-	public Reservation(int numOfGuests, String custName) {
+	Reservation(int numOfGuests, String custName) {
         this.custName = custName;
         this.numOfGuests = numOfGuests;
     }

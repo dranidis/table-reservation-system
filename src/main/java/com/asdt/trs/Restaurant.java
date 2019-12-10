@@ -1,6 +1,5 @@
 package com.asdt.trs;
 
-import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -10,13 +9,13 @@ public class Restaurant {
 
     /**
      * Returns the first available table id for the specific date and time.
+     * Returns -1 if no table is found.
      *
-     * @param dateString
-     * @param numOfGuests
-     * @param name
-     * @param tel
-     * @return
-     * @throws ParseException
+     * @param dateString the date and time of the request in the format "dd/MM/yyyy HH"
+     * @param numOfGuests the number of guests. The table should be at least of this size.
+     * @param name the name of the customer who makes the reservation
+     * @param tel the tel of the customer
+     * @return the id of the first available table. -1 if no table is found.
      */
     public int reserveTable(String dateString, int numOfGuests, String name, String tel) {
         LocalDateTime arrDateTime = toDateTime(dateString);
@@ -30,7 +29,11 @@ public class Restaurant {
         }
         return -1;
     }
-
+    /**
+     * Adds a table to the restaurant
+     * @param id the id of the table. A positive integer number.
+     * @param max the maximum number of diners.
+     */
     public void addTable(int id, int max) {
         tables.add(new Table(id, max));
     }

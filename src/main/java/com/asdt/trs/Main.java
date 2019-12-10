@@ -21,7 +21,7 @@ public class Main {
         System.out.println(r);
     }
 
-    public static void execReserveTableScenario(Restaurant r, String dateString, int numOfGuests, String name,
+    private static void execReserveTableScenario(Restaurant r, String dateString, int numOfGuests, String name,
             String tel) {
         int tId = r.reserveTable(dateString, numOfGuests, name, tel);
         if (tId != -1)

@@ -2,7 +2,7 @@
 
 Execute the main with 
 ```
-mvn clean exec:java
+mvn clean compile exec:java
 ```
 
 Run the tests with
